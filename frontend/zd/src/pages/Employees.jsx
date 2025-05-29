@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import RegisterEmployees from "../components/Employees/RegisterEmployees";
-import EmployeesList from "../components/Employees/EmployeesList";
+import EmployeesList from "../components/Employees/EmployeesList.jsx";
 import { Toaster } from "react-hot-toast";
 import useDataEmployees from "../components/Employees/hooks/useDataEmployees";
 
