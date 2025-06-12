@@ -15,6 +15,10 @@ import providersRoutes from "./src/routes/providers.js"
 import { validateAuthToken } from "./src/middleware/validateAuthToken.js";
 import cors from "cors";
 
+import path from "path"
+import fs from "fs"
+import swaggerUI from "swagger-ui-express"  
+
 //Creo una constante que es igual a la libreria que importé
 const app = express();
 
@@ -37,6 +41,13 @@ app.use("/api/products", productRoutes)
 app.use("/api/customers", customersRoutes)
 app.use("/api/employees", employeesRoutes)
 app.use("/api/subsidiaries", subsidiariesRoutes)
+
+const swaggerDocument = JSON.parse(
+  fs.readFileSync(path.resolve("./documentation zonadigital.json"), "utf-8")
+)
+
+app.use("/api/docs", swaggerUI.serve, swaggerUI.setup(swaggerDocument));
+
 app.use("/api/reviews", reviewRoutes)
 app.use("/api/registerCustomers", registerCustomerRoutes)
 //app.use("/api/Registreremployees", validateAuthToken (["admin"]), registerEmployeesRoutes);
